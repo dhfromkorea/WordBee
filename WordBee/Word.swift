@@ -9,23 +9,28 @@
 import UIKit
 
 class Word: NSObject, NSCoding {
-    var term: String
-    var definition: String
-    // private var helperText: String
-    // private var image: UIImage
-    
-    init(_ text: String, definition: String) {
-        self.term = text
-        self.definition = definition
-    }
-    
-    required init(coder aDecoder: NSCoder) {
-        term = aDecoder.decodeObject(forKey: "term") as! String
-        definition = aDecoder.decodeObject(forKey: "definition") as! String
-    }
-    
-    func encode(with aCoder: NSCoder) {
-        aCoder.encode(term, forKey: "term")
-        aCoder.encode(definition, forKey: "definition")
-    }
+  var term: String!
+  var definition: String!
+  var mnemonic: String
+  // private var helperText: String
+  // private var image: UIImage
+
+  init(_ text: String, definition: String, mnemonic: String) {
+    self.term = text
+    self.definition = definition
+    self.mnemonic = mnemonic
+  }
+
+  required init(coder aDecoder: NSCoder) {
+    term = aDecoder.decodeObject(forKey: "term") as? String ?? "term"
+    definition = aDecoder.decodeObject(forKey: "definition") as? String ?? "definition"
+    mnemonic = aDecoder.decodeObject(forKey: "mnemonic") as? String ?? "mnemonic"
+  }
+
+  func encode(with aCoder: NSCoder) {
+    aCoder.encode(term, forKey: "term")
+    aCoder.encode(definition, forKey: "definition")
+    aCoder.encode(mnemonic, forKey: "mnemonic")
+
+  }
 }

@@ -9,6 +9,6 @@
 import UIKit
 
 class WordCell: UITableViewCell {
-    @IBOutlet var titleLabel: UIView!
-    @IBOutlet var detailLabel: UIView!
+  @IBOutlet var titleLabel: UIView!
+  @IBOutlet var detailLabel: UIView!
 }

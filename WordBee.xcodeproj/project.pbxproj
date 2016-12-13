@@ -85,10 +85,10 @@
 			children = (
 				E3C1F1A61DB9FC500073566A /* AppDelegate.swift */,
 				E3C1F1A81DB9FC500073566A /* ViewController.swift */,
-				E37EB93E1DBA1461001C0F4C /* WordDetailViewController.swift */,
 				E3E04A4B1DBA0BB70040AF73 /* WordCell.swift */,
-				E3C1F1AA1DB9FC500073566A /* Main.storyboard */,
+				E37EB93E1DBA1461001C0F4C /* WordDetailViewController.swift */,
 				E3E04A4D1DBA0DCB0040AF73 /* Word.swift */,
+				E3C1F1AA1DB9FC500073566A /* Main.storyboard */,
 				E3C1F1AD1DB9FC500073566A /* Assets.xcassets */,
 				E3C1F1AF1DB9FC500073566A /* LaunchScreen.storyboard */,
 				E3C1F1B21DB9FC500073566A /* Info.plist */,
@@ -115,6 +115,7 @@
 				E3C1F19F1DB9FC500073566A /* Sources */,
 				E3C1F1A01DB9FC500073566A /* Frameworks */,
 				E3C1F1A11DB9FC500073566A /* Resources */,
+				E37EB9401DBA5DBB001C0F4C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -203,6 +204,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E37EB9401DBA5DBB001C0F4C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E3C1F19F1DB9FC500073566A /* Sources */ = {
