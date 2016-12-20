@@ -87,13 +87,13 @@ class WordListViewController: UITableViewController {
     }
 
     let saveAction = UIAlertAction(title: "save", style: .default) { [unowned self, ac ] _ in
-      if let word = ac.textFields?[0].text,
-        let definition = ac.textFields?[1].text,
-        let hint = ac.textFields?[2].text {
-        let word = Word(word: word, definition: definition, hint: hint)
-        self.words.append(word)
-        self.tableView.reloadData()
-        self.saveWordsData()
+      if let word = ac.textFields?[0].text, !word.isEmpty,
+        let definition = ac.textFields?[1].text, !definition.isEmpty,
+        let hint = ac.textFields?[2].text, !hint.isEmpty {
+          let word = Word(word: word, definition: definition, hint: hint)
+          self.words.append(word)
+          self.tableView.reloadData()
+          self.saveWordsData()
       }
     }
     let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
