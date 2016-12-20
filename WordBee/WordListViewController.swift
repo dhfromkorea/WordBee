@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UITableViewController {
+class WordListViewController: UITableViewController {
   var words = [Word]()
 
   override func viewDidLoad() {
@@ -18,28 +18,52 @@ class ViewController: UITableViewController {
     loadData()
   }
 
+
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
 
+
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return words.count
   }
 
+
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "Word", for: indexPath)
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: "WordCell", for: indexPath) as? WordTableViewCell else {
+      // TODO: clean this up
+      return WordTableViewCell()
+    }
     let word = words[indexPath.row]
-    cell.textLabel!.text = word.term
-    cell.detailTextLabel!.text = word.definition
+
+    cell.mnemonicLabel?.textColor = UIColor.lightGray
+    cell.mnemonicLabel?.text = word.mnemonic
+
+    cell.wordLabel?.text = word.term
+
     return cell
   }
+
+
+  @IBAction func hintTapped(_ sender: AnyObject) {
+    print("hint tapped")
+    let word = words[sender.tag]
+    print("hint button found with \(word.mnemonic)")
+  }
+
+
   // MARK: configure views
   func configureView() {
-    navigationItem.leftBarButtonItem =
+    navigationItem.rightBarButtonItem =
       UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addWord))
-    navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Modes", style: .plain, target: self, action: #selector(changeMode))
+    // navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Modes", style: .plain, target: self, action: #selector(changeMode))
+
+    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.estimatedRowHeight = 80
   }
+
+
   func loadData() {
     let defaults = UserDefaults.standard
     if let wordsData = defaults.object(forKey: "words") as? Data,
@@ -47,11 +71,9 @@ class ViewController: UITableViewController {
       words = savedWords
     }
   }
-  func changeMode() {
 
-  }
+
   // MARK: CRUD funcs for Words
-
   func addWord() {
     let ac = UIAlertController(title: "add a new word", message: nil, preferredStyle: .alert)
     ac.addTextField { (textField : UITextField!) in
@@ -60,11 +82,15 @@ class ViewController: UITableViewController {
     ac.addTextField { (textField : UITextField!) in
       textField.placeholder = "definition"
     }
+    ac.addTextField { (textField : UITextField!) in
+      textField.placeholder = "hint (one word)"
+    }
+
     let saveAction = UIAlertAction(title: "save", style: .default) { [unowned self, ac ] _ in
-      if let term = ac.textFields?[0].text,
-         let definition = ac.textFields?[1].text,
-         let mnemonic = ac.textFields?[2].text {
-        let word = Word(term, definition: definition, mnemonic: mnemonic)
+      if let word = ac.textFields?[0].text,
+        let definition = ac.textFields?[1].text,
+        let hint = ac.textFields?[2].text {
+        let word = Word(word: word, definition: definition, hint: hint)
         self.words.append(word)
         self.tableView.reloadData()
         self.saveWordsData()
@@ -77,19 +103,19 @@ class ViewController: UITableViewController {
     present(ac, animated: true)
   }
 
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    guard segue.identifier == "WordDetailView" else { return }
-    guard let vc = segue.destination as? WordDetailViewController else { return }
 
-    if let row = tableView.indexPathForSelectedRow?.row {
-      let word = words[row]
-      vc.word = word
-    }
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard segue.identifier == "WordDetailViewSegue" else { return }
+    guard let vc = segue.destination as? WordDetailViewController,
+      let row = tableView.indexPathForSelectedRow?.row else { return }
+    vc.word = words[row]
   }
+
 
   func saveWordsData() {
     let data = NSKeyedArchiver.archivedData(withRootObject: words)
     let defaults = UserDefaults.standard
     defaults.set(data, forKey: "words")
   }
+  
 }

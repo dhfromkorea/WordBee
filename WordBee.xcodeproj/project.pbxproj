@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		E37EB93F1DBA1461001C0F4C /* WordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37EB93E1DBA1461001C0F4C /* WordDetailViewController.swift */; };
 		E3C1F1A71DB9FC500073566A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C1F1A61DB9FC500073566A /* AppDelegate.swift */; };
-		E3C1F1A91DB9FC500073566A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C1F1A81DB9FC500073566A /* ViewController.swift */; };
+		E3C1F1A91DB9FC500073566A /* WordListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C1F1A81DB9FC500073566A /* WordListViewController.swift */; };
 		E3C1F1AC1DB9FC500073566A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3C1F1AA1DB9FC500073566A /* Main.storyboard */; };
 		E3C1F1AE1DB9FC500073566A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3C1F1AD1DB9FC500073566A /* Assets.xcassets */; };
 		E3C1F1B11DB9FC500073566A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3C1F1AF1DB9FC500073566A /* LaunchScreen.storyboard */; };
 		E3C1F1BC1DB9FC510073566A /* WordBeeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C1F1BB1DB9FC510073566A /* WordBeeTests.swift */; };
-		E3E04A4C1DBA0BB70040AF73 /* WordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E04A4B1DBA0BB70040AF73 /* WordCell.swift */; };
+		E3E04A4C1DBA0BB70040AF73 /* WordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E04A4B1DBA0BB70040AF73 /* WordTableViewCell.swift */; };
 		E3E04A4E1DBA0DCB0040AF73 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E04A4D1DBA0DCB0040AF73 /* Word.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +32,7 @@
 		E37EB93E1DBA1461001C0F4C /* WordDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordDetailViewController.swift; sourceTree = "<group>"; };
 		E3C1F1A31DB9FC500073566A /* WordBee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordBee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3C1F1A61DB9FC500073566A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E3C1F1A81DB9FC500073566A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E3C1F1A81DB9FC500073566A /* WordListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListViewController.swift; sourceTree = "<group>"; };
 		E3C1F1AB1DB9FC500073566A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E3C1F1AD1DB9FC500073566A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E3C1F1B01DB9FC500073566A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -40,7 +40,7 @@
 		E3C1F1B71DB9FC510073566A /* WordBeeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WordBeeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3C1F1BB1DB9FC510073566A /* WordBeeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordBeeTests.swift; sourceTree = "<group>"; };
 		E3C1F1BD1DB9FC510073566A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E3E04A4B1DBA0BB70040AF73 /* WordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordCell.swift; sourceTree = "<group>"; };
+		E3E04A4B1DBA0BB70040AF73 /* WordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordTableViewCell.swift; sourceTree = "<group>"; };
 		E3E04A4D1DBA0DCB0040AF73 /* Word.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,6 +62,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E32FE3301E07D12C00554762 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E3E04A4D1DBA0DCB0040AF73 /* Word.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		E32FE3311E07D13D00554762 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E3E04A4B1DBA0BB70040AF73 /* WordTableViewCell.swift */,
+				E3C1F1AA1DB9FC500073566A /* Main.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		E32FE3321E07D14600554762 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E3C1F1A81DB9FC500073566A /* WordListViewController.swift */,
+				E37EB93E1DBA1461001C0F4C /* WordDetailViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
 		E3C1F19A1DB9FC500073566A = {
 			isa = PBXGroup;
 			children = (
@@ -83,12 +109,10 @@
 		E3C1F1A51DB9FC500073566A /* WordBee */ = {
 			isa = PBXGroup;
 			children = (
+				E32FE3321E07D14600554762 /* ViewControllers */,
+				E32FE3311E07D13D00554762 /* Views */,
+				E32FE3301E07D12C00554762 /* Models */,
 				E3C1F1A61DB9FC500073566A /* AppDelegate.swift */,
-				E3C1F1A81DB9FC500073566A /* ViewController.swift */,
-				E3E04A4B1DBA0BB70040AF73 /* WordCell.swift */,
-				E37EB93E1DBA1461001C0F4C /* WordDetailViewController.swift */,
-				E3E04A4D1DBA0DCB0040AF73 /* Word.swift */,
-				E3C1F1AA1DB9FC500073566A /* Main.storyboard */,
 				E3C1F1AD1DB9FC500073566A /* Assets.xcassets */,
 				E3C1F1AF1DB9FC500073566A /* LaunchScreen.storyboard */,
 				E3C1F1B21DB9FC500073566A /* Info.plist */,
@@ -226,10 +250,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3E04A4C1DBA0BB70040AF73 /* WordCell.swift in Sources */,
+				E3E04A4C1DBA0BB70040AF73 /* WordTableViewCell.swift in Sources */,
 				E37EB93F1DBA1461001C0F4C /* WordDetailViewController.swift in Sources */,
 				E3E04A4E1DBA0DCB0040AF73 /* Word.swift in Sources */,
-				E3C1F1A91DB9FC500073566A /* ViewController.swift in Sources */,
+				E3C1F1A91DB9FC500073566A /* WordListViewController.swift in Sources */,
 				E3C1F1A71DB9FC500073566A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
