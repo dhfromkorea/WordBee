@@ -26,6 +26,8 @@ class WordDetailViewController: UIViewController {
     termLabel.text = word.term
     definitionTextView.text = word.definition
     mnemonicLabel.text = word.mnemonic
+
+
   }
 
   override func didReceiveMemoryWarning() {
@@ -69,13 +71,15 @@ class WordDetailViewController: UIViewController {
 
     definitionTextView.attributedText = NSMutableAttributedString(string: word.definition, attributes: bodyAttributes)
 
+    hideKeyboardWhenTappedAround()
+
   }
 
   func editWord() {
 
   }
 }
-//
+
 //extension UITextField {
 //  func setBottomBorder(borderColor: UIColor) {
 //    self.borderStyle = UITextBorderStyle.none
@@ -88,3 +92,14 @@ class WordDetailViewController: UIViewController {
 //    self.addSubview(borderLine)
 //  }
 //}
+
+extension UIViewController {
+  func hideKeyboardWhenTappedAround() {
+    let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+    view.addGestureRecognizer(tap)
+  }
+
+  func dismissKeyboard() {
+    view.endEditing(true)
+  }
+}
