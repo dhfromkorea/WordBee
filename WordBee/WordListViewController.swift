@@ -11,7 +11,9 @@ import CoreData
 
 class WordListViewController: UITableViewController {
   var words = [Word]()
-  var container: NSPersistentContainer!
+  lazy var viewContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+  lazy var saveContext = (UIApplication.shared.delegate as! AppDelegate).saveContext
+
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -58,16 +60,10 @@ class WordListViewController: UITableViewController {
 
 
   func loadData() {
-    container = NSPersistentContainer(name: "WordBee")
-    container.loadPersistentStores { storeDesc, err in
-      if let err = err {
-        print("load NScontainer error: \(err)")
-      }
-    }
 
     let request = Word.createFetchRequest()
 
-    if let words = try? container.viewContext.fetch(request) {
+    if let words = try? viewContext.fetch(request) {
       if words.count > 0 {
         print("fetched \(words.count) words")
         self.words = words
@@ -77,15 +73,7 @@ class WordListViewController: UITableViewController {
     }
   }
 
-  func saveContext() {
-    if container.viewContext.hasChanges {
-      do {
-        try container.viewContext.save()
-      } catch {
-        print("An error occurred while saving: \(error)")
-      }
-    }
-  }
+
 
   // MARK: CRUD funcs for Words
   func addWord() {
@@ -104,11 +92,10 @@ class WordListViewController: UITableViewController {
       if let term = ac.textFields?[0].text, !term.isEmpty,
         let definition = ac.textFields?[1].text, !definition.isEmpty,
         let hint = ac.textFields?[2].text, !hint.isEmpty {
-          let word = Word(context: self.container.viewContext)
+          let word = Word(context: self.viewContext)
           self.configureWord(word: word, term: term, mnemonic: hint, definition: definition)
 
           self.words.append(word)
-
           self.saveContext()
           self.tableView.reloadData()
       }

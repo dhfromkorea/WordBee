@@ -10,7 +10,8 @@ import UIKit
 
 class WordDetailViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
   var word: Word!
-  
+  lazy var saveContext = (UIApplication.shared.delegate as! AppDelegate).saveContext
+
   @IBOutlet var headingLabels: [UILabel]!
   @IBOutlet weak var termLabel: UITextField!
   @IBOutlet weak var mnemonicLabel: UITextField!
@@ -20,6 +21,15 @@ class WordDetailViewController: UIViewController, UITextFieldDelegate, UITextVie
   override func viewDidLoad() {
     super.viewDidLoad()
     configureView()
+
+    termLabel.delegate = self
+    termLabel.tag = 1
+
+    mnemonicLabel.delegate = self
+    mnemonicLabel.tag = 2
+
+    definitionTextView.delegate = self
+    definitionTextView.tag = 3
 
     termLabel.text = word.term
     definitionTextView.text = word.definition
@@ -79,9 +89,37 @@ class WordDetailViewController: UIViewController, UITextFieldDelegate, UITextVie
   }
 
   func textFieldDidEndEditing(_ textField: UITextField) {
-    print("auto saving... ")
+    if let text = textField.text {
+      switch textField.tag {
+      case 1:
+        word.term = text
+      case 2:
+        word.mnemonic = text
+      case 3:
+        word.definition = text
+      default:
+        print("textfield ")
+      }
+      saveContext()
+    }
+
   }
 
+  func textViewDidEndEditing(_ textView: UITextView) {
+    if let text = textView.text {
+      switch textView.tag {
+      case 1:
+        word.term = text
+      case 2:
+        word.mnemonic = text
+      case 3:
+        word.definition = text
+      default:
+        print("textfield ")
+      }
+      saveContext()
+    }
+  }
 
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     termLabel.resignFirstResponder()

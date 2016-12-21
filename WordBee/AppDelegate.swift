@@ -7,11 +7,33 @@
 //
 
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
+
+  lazy var persistentContainer: NSPersistentContainer = {
+    let container = NSPersistentContainer(name: "WordBee")
+    container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+      if let error = error {
+        fatalError("Unresolved error \(error)")
+      }
+    })
+    return container
+  }()
+
+
+  func saveContext() {
+    if persistentContainer.viewContext.hasChanges {
+      do {
+        try persistentContainer.viewContext.save()
+      } catch {
+        print("An error occurred while saving: \(error)")
+      }
+    }
+  }
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
