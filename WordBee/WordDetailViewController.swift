@@ -34,11 +34,6 @@ class WordDetailViewController: UIViewController, UITextFieldDelegate {
     // Dispose of any resources that can be recreated.
   }
 
-//  override func viewDidLayoutSubviews() {
-//    termLabel.setBottomBorder(borderColor: UIColor.lightGray)
-//    definitionLabel.setBottomBorder(borderColor: UIColor.lightGray)
-//    mnemonicLabel.setBottomBorder(borderColor: UIColor.lightGray)
-//  }
 
   func configureView() {
     navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editWord))
@@ -60,8 +55,8 @@ class WordDetailViewController: UIViewController, UITextFieldDelegate {
       NSForegroundColorAttributeName : UIColor.darkText
     ] as [String : Any]
 
-    termLabel.attributedText = NSMutableAttributedString(string: word.term, attributes: headingBodyAttributes)
-    mnemonicLabel.attributedText = NSMutableAttributedString(string: word.mnemonic, attributes: headingBodyAttributes)
+    termLabel.attributedText = NSMutableAttributedString(string: word.term!, attributes: headingBodyAttributes)
+    mnemonicLabel.attributedText = NSMutableAttributedString(string: word.mnemonic!, attributes: headingBodyAttributes)
 
     let bodyAttributes = [
       NSKernAttributeName: 1,
@@ -69,7 +64,7 @@ class WordDetailViewController: UIViewController, UITextFieldDelegate {
       NSForegroundColorAttributeName : UIColor.darkText
     ] as [String : Any]
 
-    definitionTextView.attributedText = NSMutableAttributedString(string: word.definition, attributes: bodyAttributes)
+    definitionTextView.attributedText = NSMutableAttributedString(string: word.definition!, attributes: bodyAttributes)
 
     // hideKeyboardWhenTappedAround()
 
@@ -105,19 +100,6 @@ class WordDetailViewController: UIViewController, UITextFieldDelegate {
     return true
   }
 }
-
-//extension UITextField {
-//  func setBottomBorder(borderColor: UIColor) {
-//    self.borderStyle = UITextBorderStyle.none
-//    self.backgroundColor = UIColor.clear
-//    let width = 1.0
-//
-//    let borderLine = UIView()
-//    borderLine.frame = CGRect(x: 0, y: Double(self.frame.height) - width, width: Double(self.frame.width), height: width)
-//    borderLine.backgroundColor = borderColor
-//    self.addSubview(borderLine)
-//  }
-//}
 
 extension UIViewController {
   func hideKeyboardWhenTappedAround() {

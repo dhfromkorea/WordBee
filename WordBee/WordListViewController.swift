@@ -7,15 +7,18 @@
 //
 
 import UIKit
+import CoreData
 
 class WordListViewController: UITableViewController {
   var words = [Word]()
+  var container: NSPersistentContainer!
 
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
     configureView()
     loadData()
+    saveContext()
   }
 
 
@@ -65,13 +68,30 @@ class WordListViewController: UITableViewController {
 
 
   func loadData() {
-    let defaults = UserDefaults.standard
-    if let wordsData = defaults.object(forKey: "words") as? Data,
-      let savedWords = NSKeyedUnarchiver.unarchiveObject(with: wordsData) as? [Word] {
-      words = savedWords
+//    let defaults = UserDefaults.standard
+//    if let wordsData = defaults.object(forKey: "words") as? Data,
+//      let savedWords = NSKeyedUnarchiver.unarchiveObject(with: wordsData) as? [Word] {
+//      words = savedWords
+//    }
+
+    container = NSPersistentContainer(name: "WordBee")
+    container.loadPersistentStores { storeDesc, err in
+      if let err = err {
+        print("load NScontainer error: \(err)")
+      }
     }
+
   }
 
+  func saveContext() {
+    if container.viewContext.hasChanges {
+      do  {
+        try container.viewContext.save()
+      } catch {
+        print("An error occurred while saving: \(error)")
+      }
+    }
+  }
 
   // MARK: CRUD funcs for Words
   func addWord() {
@@ -90,10 +110,8 @@ class WordListViewController: UITableViewController {
       if let word = ac.textFields?[0].text, !word.isEmpty,
         let definition = ac.textFields?[1].text, !definition.isEmpty,
         let hint = ac.textFields?[2].text, !hint.isEmpty {
-          let word = Word(word: word, definition: definition, hint: hint)
-          self.words.append(word)
-          self.tableView.reloadData()
-          self.saveWordsData()
+          let word = Word()
+
       }
     }
     let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
