@@ -12,15 +12,15 @@
             <objects>
                 <tableViewController id="Fre-kd-nOf" customClass="WordListViewController" customModule="WordBee" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="28" sectionFooterHeight="28" id="2o5-jg-951">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WordCell" rowHeight="81" id="Jnj-TF-LEc" customClass="WordTableViewCell" customModule="WordBee" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="414" height="81"/>
+                                <rect key="frame" x="0.0" y="92" width="375" height="81"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jnj-TF-LEc" id="ssa-Yf-fZf">
-                                    <frame key="frameInset" width="414" height="81"/>
+                                    <frame key="frameInset" width="375" height="81"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="word" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oad-qb-8aH">
@@ -74,46 +74,87 @@
                         <viewControllerLayoutGuide type="bottom" id="64E-bb-4Gr"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="uB6-z6-Am4">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="termLabel" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3t6-es-a2y" userLabel="Term Label">
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="mnemonicLabel" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dsn-tE-hEb">
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="definitionLabel" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DR1-u8-jQZ">
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="4Xq-Fg-sRp">
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="elA-DV-d1a">
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lPd-e4-ChA">
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Term:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WCV-k4-N9K" userLabel="Term">
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="termLabel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3t6-es-a2y" userLabel="Term Label">
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="b6q-Xu-cQ0">
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hint:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wlO-Fe-6AC" userLabel="Hint">
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="mnemonicLabel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dsn-tE-hEb">
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="b6q-Xu-cQ0" firstAttribute="width" secondItem="lPd-e4-ChA" secondAttribute="width" id="S9x-B7-x8S"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TfN-QU-srg">
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Definition:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NIA-Ma-8ai" userLabel="Definition">
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="definitionTextView" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="K8P-yf-BOQ">
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="TfN-QU-srg" firstAttribute="top" secondItem="elA-DV-d1a" secondAttribute="bottom" constant="16" id="APs-5o-Egg"/>
+                                    <constraint firstItem="TfN-QU-srg" firstAttribute="leading" secondItem="elA-DV-d1a" secondAttribute="leading" id="R6V-pO-hdx"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="DR1-u8-jQZ" firstAttribute="top" secondItem="Dsn-tE-hEb" secondAttribute="bottom" constant="94" id="1q3-1v-lPX"/>
-                            <constraint firstItem="Dsn-tE-hEb" firstAttribute="centerX" secondItem="uB6-z6-Am4" secondAttribute="centerX" id="HHo-9C-CEf"/>
-                            <constraint firstItem="3t6-es-a2y" firstAttribute="top" secondItem="JxO-dV-XxN" secondAttribute="bottom" constant="150" id="MYw-x3-727"/>
-                            <constraint firstItem="DR1-u8-jQZ" firstAttribute="centerX" secondItem="uB6-z6-Am4" secondAttribute="centerX" id="PpX-Eu-iMp"/>
-                            <constraint firstItem="Dsn-tE-hEb" firstAttribute="top" secondItem="3t6-es-a2y" secondAttribute="bottom" constant="94" id="gOJ-uQ-yge"/>
-                            <constraint firstItem="Dsn-tE-hEb" firstAttribute="centerX" secondItem="uB6-z6-Am4" secondAttribute="centerX" id="gdm-Ax-oYa"/>
-                            <constraint firstItem="3t6-es-a2y" firstAttribute="centerX" secondItem="uB6-z6-Am4" secondAttribute="centerX" id="iq8-Wl-eVW"/>
-                            <constraint firstItem="DR1-u8-jQZ" firstAttribute="centerX" secondItem="uB6-z6-Am4" secondAttribute="centerX" id="loR-OU-6jr"/>
+                            <constraint firstItem="4Xq-Fg-sRp" firstAttribute="top" secondItem="JxO-dV-XxN" secondAttribute="bottom" constant="20" id="DpG-v2-weq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="4Xq-Fg-sRp" secondAttribute="trailing" constant="8" id="EhJ-dp-hTC"/>
+                            <constraint firstItem="4Xq-Fg-sRp" firstAttribute="leading" secondItem="uB6-z6-Am4" secondAttribute="leadingMargin" constant="8" id="MXd-03-v02"/>
+                            <constraint firstItem="64E-bb-4Gr" firstAttribute="top" secondItem="4Xq-Fg-sRp" secondAttribute="bottom" constant="20" id="qNl-Aq-WUa"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="definitionLabel" destination="DR1-u8-jQZ" id="hn0-8k-Ra6"/>
+                        <outlet property="definitionTextView" destination="K8P-yf-BOQ" id="fvS-z8-1pO"/>
                         <outlet property="mnemonicLabel" destination="Dsn-tE-hEb" id="lWH-M9-pzh"/>
                         <outlet property="termLabel" destination="3t6-es-a2y" id="49o-ia-LFn"/>
+                        <outletCollection property="headingLabels" destination="NIA-Ma-8ai" collectionClass="NSMutableArray" id="j07-6g-Lqx"/>
+                        <outletCollection property="headingLabels" destination="WCV-k4-N9K" collectionClass="NSMutableArray" id="9fE-Sg-jsQ"/>
+                        <outletCollection property="headingLabels" destination="wlO-Fe-6AC" collectionClass="NSMutableArray" id="rWV-Lq-g1n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VCh-jx-oY9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4619" y="-188"/>
+            <point key="canvasLocation" x="4618.3999999999996" y="-188.45577211394306"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MxE-CN-Stz">

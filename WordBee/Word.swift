@@ -11,8 +11,8 @@ import UIKit
 class Word: NSObject, NSCoding {
   var term: String!
   var definition: String!
-  var mnemonic: String?
-  var example: String?
+  var mnemonic: String!
+  var examples: String?
 
   // private var helperText: String
   // private var image: UIImage
@@ -27,13 +27,13 @@ class Word: NSObject, NSCoding {
     term = aDecoder.decodeObject(forKey: "term") as? String ?? "term"
     definition = aDecoder.decodeObject(forKey: "definition") as? String ?? "definition"
     mnemonic = aDecoder.decodeObject(forKey: "mnemonic") as? String
-    example = aDecoder.decodeObject(forKey: "example") as? String
+    examples = aDecoder.decodeObject(forKey: "examples") as? String
   }
 
   func encode(with aCoder: NSCoder) {
     aCoder.encode(term, forKey: "term")
     aCoder.encode(definition, forKey: "definition")
     aCoder.encode(mnemonic, forKey: "mnemonic")
-    aCoder.encode(mnemonic, forKey: "example")
+    aCoder.encode(mnemonic, forKey: "examples")
   }
 }
