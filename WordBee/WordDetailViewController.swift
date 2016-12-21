@@ -11,6 +11,7 @@ import UIKit
 class WordDetailViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
   var word: Word!
   lazy var saveContext = (UIApplication.shared.delegate as! AppDelegate).saveContext
+  lazy var viewContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
   @IBOutlet var headingLabels: [UILabel]!
   @IBOutlet weak var termLabel: UITextField!
@@ -127,6 +128,7 @@ class WordDetailViewController: UIViewController, UITextFieldDelegate, UITextVie
     definitionTextView.resignFirstResponder()
     return true
   }
+
 }
 
 extension UIViewController {

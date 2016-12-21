@@ -52,8 +52,7 @@ class WordListViewController: UITableViewController {
 
   // MARK: configure views
   func configureView() {
-    navigationItem.rightBarButtonItem =
-      UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addWord))
+    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addWord))
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 80
   }
