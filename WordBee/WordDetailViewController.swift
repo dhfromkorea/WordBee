@@ -8,10 +8,9 @@
 
 import UIKit
 
-class WordDetailViewController: UIViewController, UITextFieldDelegate {
+class WordDetailViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
   var word: Word!
-//  var isEditing = false
-
+  
   @IBOutlet var headingLabels: [UILabel]!
   @IBOutlet weak var termLabel: UITextField!
   @IBOutlet weak var mnemonicLabel: UITextField!
@@ -25,8 +24,6 @@ class WordDetailViewController: UIViewController, UITextFieldDelegate {
     termLabel.text = word.term
     definitionTextView.text = word.definition
     mnemonicLabel.text = word.mnemonic
-
-
   }
 
   override func didReceiveMemoryWarning() {
@@ -49,24 +46,18 @@ class WordDetailViewController: UIViewController, UITextFieldDelegate {
       NSAttributedString(string: $0.text!, attributes: headingAttributes)
     }
 
-    let headingBodyAttributes = [
-      NSKernAttributeName: 1,
-      NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline),
-      NSForegroundColorAttributeName : UIColor.darkText
-    ] as [String : Any]
-
-    termLabel.attributedText = NSMutableAttributedString(string: word.term!, attributes: headingBodyAttributes)
-    mnemonicLabel.attributedText = NSMutableAttributedString(string: word.mnemonic!, attributes: headingBodyAttributes)
-
     let bodyAttributes = [
       NSKernAttributeName: 1,
       NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.body),
       NSForegroundColorAttributeName : UIColor.darkText
-    ] as [String : Any]
+      ] as [String : Any]
 
-    definitionTextView.attributedText = NSMutableAttributedString(string: word.definition!, attributes: bodyAttributes)
+    termLabel.attributedText = NSMutableAttributedString(string: word.term, attributes: bodyAttributes)
+    mnemonicLabel.attributedText = NSMutableAttributedString(string: word.mnemonic, attributes: bodyAttributes)
 
-    // hideKeyboardWhenTappedAround()
+    definitionTextView.textContainerInset = UIEdgeInsets.zero  
+    definitionTextView.textContainer.lineFragmentPadding = 0
+    definitionTextView.attributedText = NSMutableAttributedString(string: word.definition, attributes: bodyAttributes)
 
   }
 
@@ -88,7 +79,6 @@ class WordDetailViewController: UIViewController, UITextFieldDelegate {
   }
 
   func textFieldDidEndEditing(_ textField: UITextField) {
-    // TODO: auto save
     print("auto saving... ")
   }
 
