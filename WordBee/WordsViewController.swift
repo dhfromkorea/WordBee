@@ -9,8 +9,8 @@
 import UIKit
 import CoreData
 
-class WordListViewController: UITableViewController {
-  var store: WordListStore!
+class WordsViewController: UITableViewController {
+  var store: WordStore!
   let wordDatasource = WordDataSource()
 
   override func viewDidLoad() {

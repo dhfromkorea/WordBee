@@ -12,7 +12,7 @@ import CoreData
 class WordDetailViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
   var word: Word!
   var wordIndex: Int!
-  var store: WordListStore!
+  var store: WordStore!
 
   @IBOutlet var headingLabels: [UILabel]!
   @IBOutlet weak var termLabel: UITextField!

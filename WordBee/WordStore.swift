@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class WordListStore {
+class WordStore {
   // CRUD
   var coreDataStack: CoreDataStack!
   var mainContext: NSManagedObjectContext!

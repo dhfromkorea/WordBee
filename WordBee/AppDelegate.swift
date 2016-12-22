@@ -18,8 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Override point for customization after application launch.
 
     let rootVC = window!.rootViewController as! UINavigationController
-    let wordListVC = rootVC.topViewController as! WordListViewController
-    wordListVC.store = WordListStore()
+    let wordListVC = rootVC.topViewController as! WordsViewController
+    wordListVC.store = WordStore()
     return true
   }
 
