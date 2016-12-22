@@ -10,6 +10,8 @@
 		E34A3E8D1E0A4033007B5428 /* WordBee.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E34A3E8B1E0A4033007B5428 /* WordBee.xcdatamodeld */; };
 		E34A3E911E0A4AF0007B5428 /* Word+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A3E8F1E0A4AF0007B5428 /* Word+CoreDataClass.swift */; };
 		E34A3E921E0A4AF0007B5428 /* Word+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A3E901E0A4AF0007B5428 /* Word+CoreDataProperties.swift */; };
+		E371CF031E0BB6F5000353D7 /* WordListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E371CF021E0BB6F5000353D7 /* WordListStore.swift */; };
+		E371CF051E0BB727000353D7 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E371CF041E0BB727000353D7 /* CoreDataStack.swift */; };
 		E37EB93F1DBA1461001C0F4C /* WordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37EB93E1DBA1461001C0F4C /* WordDetailViewController.swift */; };
 		E3C1F1A71DB9FC500073566A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C1F1A61DB9FC500073566A /* AppDelegate.swift */; };
 		E3C1F1A91DB9FC500073566A /* WordListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C1F1A81DB9FC500073566A /* WordListViewController.swift */; };
@@ -18,7 +20,6 @@
 		E3C1F1B11DB9FC500073566A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3C1F1AF1DB9FC500073566A /* LaunchScreen.storyboard */; };
 		E3C1F1BC1DB9FC510073566A /* WordBeeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C1F1BB1DB9FC510073566A /* WordBeeTests.swift */; };
 		E3E04A4C1DBA0BB70040AF73 /* WordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E04A4B1DBA0BB70040AF73 /* WordTableViewCell.swift */; };
-		E3E04A4E1DBA0DCB0040AF73 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E04A4D1DBA0DCB0040AF73 /* Word.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,8 @@
 		E34A3E8C1E0A4033007B5428 /* WordBee.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WordBee.xcdatamodel; sourceTree = "<group>"; };
 		E34A3E8F1E0A4AF0007B5428 /* Word+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Word+CoreDataClass.swift"; sourceTree = "<group>"; };
 		E34A3E901E0A4AF0007B5428 /* Word+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Word+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E371CF021E0BB6F5000353D7 /* WordListStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordListStore.swift; sourceTree = "<group>"; };
+		E371CF041E0BB727000353D7 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		E37EB93E1DBA1461001C0F4C /* WordDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordDetailViewController.swift; sourceTree = "<group>"; };
 		E3C1F1A31DB9FC500073566A /* WordBee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordBee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3C1F1A61DB9FC500073566A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,7 +50,6 @@
 		E3C1F1BB1DB9FC510073566A /* WordBeeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordBeeTests.swift; sourceTree = "<group>"; };
 		E3C1F1BD1DB9FC510073566A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3E04A4B1DBA0BB70040AF73 /* WordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordTableViewCell.swift; sourceTree = "<group>"; };
-		E3E04A4D1DBA0DCB0040AF73 /* Word.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +73,11 @@
 		E32FE3301E07D12C00554762 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E3E04A4D1DBA0DCB0040AF73 /* Word.swift */,
+				E34A3E8F1E0A4AF0007B5428 /* Word+CoreDataClass.swift */,
+				E34A3E901E0A4AF0007B5428 /* Word+CoreDataProperties.swift */,
+				E371CF021E0BB6F5000353D7 /* WordListStore.swift */,
+				E371CF041E0BB727000353D7 /* CoreDataStack.swift */,
+				E34A3E8B1E0A4033007B5428 /* WordBee.xcdatamodeld */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -92,16 +98,6 @@
 				E37EB93E1DBA1461001C0F4C /* WordDetailViewController.swift */,
 			);
 			name = ViewControllers;
-			sourceTree = "<group>";
-		};
-		E34A3E8E1E0A40AB007B5428 /* Stores */ = {
-			isa = PBXGroup;
-			children = (
-				E34A3E8F1E0A4AF0007B5428 /* Word+CoreDataClass.swift */,
-				E34A3E901E0A4AF0007B5428 /* Word+CoreDataProperties.swift */,
-				E34A3E8B1E0A4033007B5428 /* WordBee.xcdatamodeld */,
-			);
-			name = Stores;
 			sourceTree = "<group>";
 		};
 		E3C1F19A1DB9FC500073566A = {
@@ -125,7 +121,6 @@
 		E3C1F1A51DB9FC500073566A /* WordBee */ = {
 			isa = PBXGroup;
 			children = (
-				E34A3E8E1E0A40AB007B5428 /* Stores */,
 				E32FE3321E07D14600554762 /* ViewControllers */,
 				E32FE3311E07D13D00554762 /* Views */,
 				E32FE3301E07D12C00554762 /* Models */,
@@ -270,8 +265,9 @@
 				E34A3E8D1E0A4033007B5428 /* WordBee.xcdatamodeld in Sources */,
 				E3E04A4C1DBA0BB70040AF73 /* WordTableViewCell.swift in Sources */,
 				E37EB93F1DBA1461001C0F4C /* WordDetailViewController.swift in Sources */,
+				E371CF051E0BB727000353D7 /* CoreDataStack.swift in Sources */,
+				E371CF031E0BB6F5000353D7 /* WordListStore.swift in Sources */,
 				E34A3E911E0A4AF0007B5428 /* Word+CoreDataClass.swift in Sources */,
-				E3E04A4E1DBA0DCB0040AF73 /* Word.swift in Sources */,
 				E3C1F1A91DB9FC500073566A /* WordListViewController.swift in Sources */,
 				E3C1F1A71DB9FC500073566A /* AppDelegate.swift in Sources */,
 				E34A3E921E0A4AF0007B5428 /* Word+CoreDataProperties.swift in Sources */,

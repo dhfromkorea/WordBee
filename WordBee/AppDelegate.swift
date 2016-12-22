@@ -14,64 +14,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
-
-  lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
-    let modelName = "WordBee"
-    guard let modelURL = Bundle.main.url(forResource: modelName, withExtension: "momd") else {
-      fatalError("Error laoding model from bundle")
-    }
-    guard let mom = NSManagedObjectModel(contentsOf: modelURL) else {
-      fatalError("Error initializing mom from: \(modelURL)")
-    }
-    let psc = NSPersistentStoreCoordinator(managedObjectModel: mom)
-    let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-    let docURL = urls[urls.endIndex - 1]
-    let storeURL = docURL.appendingPathComponent("\(modelName).sqlite")
-    do {
-      try psc.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: nil)
-    } catch {
-      fatalError("error migrating store: \(error.localizedDescription)")
-    }
-    return psc
-  }()
-
-
-  @available(iOS 10.0, *)
-  lazy var persistentContainer: NSPersistentContainer = {
-    let container = NSPersistentContainer(name: "WordBee")
-    container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-      if let error = error {
-        fatalError("Unresolved error \(error)")
-      }
-    })
-    return container
-  }()
-
-
-  lazy var managedObjectContext: NSManagedObjectContext = {
-    var context: NSManagedObjectContext!
-    if #available(iOS 10.0, *) {
-      context = self.persistentContainer.viewContext
-    } else {
-      context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-      context?.persistentStoreCoordinator = self.persistentStoreCoordinator
-    }
-    return context
-  }()
-
-
-  func saveContext() {
-    if managedObjectContext.hasChanges {
-      do {
-        try managedObjectContext.save()
-      } catch {
-        print("An error occurred while saving context: \(error.localizedDescription)")
-      }
-    }
-  }
-
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
+
+    let rootVC = window!.rootViewController as! UINavigationController
+    let wordListVC = rootVC.topViewController as! WordListViewController
+    wordListVC.store = WordListStore()
     return true
   }
 

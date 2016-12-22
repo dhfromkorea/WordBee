@@ -10,16 +10,10 @@ import UIKit
 import CoreData
 
 class WordListViewController: UITableViewController {
-  var words = [Word]()
-  weak var appDelegate: AppDelegate!
-  var viewContext: NSManagedObjectContext!
-
+  var store: WordListStore!
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
-    appDelegate = UIApplication.shared.delegate as! AppDelegate
-    viewContext = appDelegate.managedObjectContext
 
     configureView()
     loadData()
@@ -58,7 +52,7 @@ class WordListViewController: UITableViewController {
   func loadData() {
     let request = Word.createFetchRequest()
 
-    if let words = try? viewContext.fetch(request) {
+    if let words = try? managedObjectContext.fetch(request) {
       if words.count > 0 {
         print("fetched \(words.count) words")
         self.words = words
@@ -79,9 +73,6 @@ class WordListViewController: UITableViewController {
       textField.placeholder = "word"
     }
     ac.addTextField { (textField : UITextField!) in
-      textField.placeholder = "definition"
-    }
-    ac.addTextField { (textField : UITextField!) in
       textField.placeholder = "hint (one word)"
     }
 
@@ -89,7 +80,8 @@ class WordListViewController: UITableViewController {
       if let term = ac.textFields?[0].text, !term.isEmpty,
         let definition = ac.textFields?[1].text, !definition.isEmpty,
         let hint = ac.textFields?[2].text, !hint.isEmpty {
-        self.saveWord(term: term, mnemonic: hint, definition: definition)
+        self.store.create(term: term, mnemonic: hint, definition: definition)
+        self.tableView.reloadData()
       }
     }
     let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
@@ -97,25 +89,6 @@ class WordListViewController: UITableViewController {
     ac.addAction(saveAction)
     ac.addAction(cancelAction)
     present(ac, animated: true)
-  }
-
-  func saveWord(term: String, mnemonic: String, definition: String) {
-    var word: Word!
-
-    if #available(iOS 10.0, *) {
-      word = Word(context: self.viewContext)
-    } else {
-      word = NSEntityDescription.insertNewObject(forEntityName: "Word", into: self.viewContext) as! Word
-    }
-
-    word.term = term
-    word.definition = definition
-    word.mnemonic = mnemonic
-    word.createdAt = Date()
-
-    self.words.append(word)
-    self.appDelegate.saveContext()
-    self.tableView.reloadData()
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
