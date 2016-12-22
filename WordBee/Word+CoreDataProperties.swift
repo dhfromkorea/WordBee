@@ -17,9 +17,9 @@ extension Word {
   }
 
   @NSManaged public var term: String
-  @NSManaged public var definition: String
   @NSManaged public var mnemonic: String
-  @NSManaged public var examples: NSObject?
   @NSManaged public var createdAt: Date
+  @NSManaged public var definition: String?
+  @NSManaged public var examples: NSObject?
 
 }

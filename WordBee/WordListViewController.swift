@@ -11,33 +11,14 @@ import CoreData
 
 class WordListViewController: UITableViewController {
   var store: WordListStore!
+  let wordDatasource = WordDataSource()
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
     configureView()
-    loadData()
-  }
 
-  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return words.count
-  }
-
-
-  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "WordCell", for: indexPath) as! WordTableViewCell
-    let word = words[indexPath.row]
-    cell.wordLabel?.text = word.term
-    cell.mnemonicLabel?.text = word.mnemonic
-
-    return cell
-  }
-
-
-  @IBAction func hintTapped(_ sender: AnyObject) {
-    print("hint tapped")
-    let word = words[sender.tag]
-    print("hint button found with \(word.mnemonic)")
+    tableView.dataSource = wordDatasource
+    wordDatasource.words = store.fetchWords()
   }
 
 
@@ -47,22 +28,6 @@ class WordListViewController: UITableViewController {
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 80
   }
-
-
-  func loadData() {
-    let request = Word.createFetchRequest()
-
-    if let words = try? managedObjectContext.fetch(request) {
-      if words.count > 0 {
-        print("fetched \(words.count) words")
-        self.words = words
-      }
-    } else {
-      fatalError("failed to fetch saved words")
-    }
-    appDelegate.saveContext()
-  }
-
 
 
   // MARK: CRUD funcs for Words
@@ -77,13 +42,17 @@ class WordListViewController: UITableViewController {
     }
 
     let saveAction = UIAlertAction(title: "Save", style: .default) { [unowned self, ac ] _ in
-      if let term = ac.textFields?[0].text, !term.isEmpty,
-        let definition = ac.textFields?[1].text, !definition.isEmpty,
-        let hint = ac.textFields?[2].text, !hint.isEmpty {
-        self.store.create(term: term, mnemonic: hint, definition: definition)
-        self.tableView.reloadData()
-      }
+      guard let term = ac.textFields?[0].text, !term.isEmpty,
+            let hint = ac.textFields?[1].text, !hint.isEmpty else { return }
+
+      let word = self.store.createWord(term: term, mnemonic: hint)
+
+      self.wordDatasource.words.append(word)
+      self.store.saveWords()
+      self.tableView.reloadData()
+
     }
+
     let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
 
     ac.addAction(saveAction)
@@ -95,7 +64,9 @@ class WordListViewController: UITableViewController {
     guard segue.identifier == "WordDetailViewSegue" else { return }
     guard let vc = segue.destination as? WordDetailViewController,
       let row = tableView.indexPathForSelectedRow?.row else { return }
-    vc.word = words[row]
+    vc.store = store
+    vc.word = wordDatasource.words[row]
+    vc.wordIndex = row
   }
 
 

@@ -11,8 +11,8 @@ import CoreData
 
 class WordDetailViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
   var word: Word!
-  weak var appDelegate: AppDelegate!
-  var viewContext: NSManagedObjectContext!
+  var wordIndex: Int!
+  var store: WordListStore!
 
   @IBOutlet var headingLabels: [UILabel]!
   @IBOutlet weak var termLabel: UITextField!
@@ -37,9 +37,6 @@ class WordDetailViewController: UIViewController, UITextFieldDelegate, UITextVie
     definitionTextView.text = word.definition
     mnemonicLabel.text = word.mnemonic
 
-
-    appDelegate = UIApplication.shared.delegate as! AppDelegate
-    viewContext = appDelegate.managedObjectContext
   }
 
 
@@ -68,7 +65,7 @@ class WordDetailViewController: UIViewController, UITextFieldDelegate, UITextVie
 
     definitionTextView.textContainerInset = UIEdgeInsets.zero  
     definitionTextView.textContainer.lineFragmentPadding = 0
-    definitionTextView.attributedText = NSMutableAttributedString(string: word.definition, attributes: bodyAttributes)
+    definitionTextView.attributedText = NSMutableAttributedString(string: word.definition ?? "no definition yet", attributes: bodyAttributes)
 
   }
 
@@ -101,9 +98,8 @@ class WordDetailViewController: UIViewController, UITextFieldDelegate, UITextVie
       default:
         print("textfield ")
       }
-      appDelegate.saveContext()
     }
-
+    store.saveWords()
   }
 
   func textViewDidEndEditing(_ textView: UITextView) {
@@ -118,7 +114,7 @@ class WordDetailViewController: UIViewController, UITextFieldDelegate, UITextVie
       default:
         print("textfield ")
       }
-      appDelegate.saveContext()
+      store.saveWords()
     }
   }
 
