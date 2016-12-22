@@ -38,7 +38,7 @@ class WordsViewController: UITableViewController {
       textField.placeholder = "word"
     }
     ac.addTextField { (textField : UITextField!) in
-      textField.placeholder = "hint (one word)"
+      textField.placeholder = "hint (1-2 words that will help you remember the word.)"
     }
 
     let saveAction = UIAlertAction(title: "Save", style: .default) { [unowned self, ac ] _ in

@@ -18,8 +18,8 @@ class WordDetailViewController: UIViewController, UITextFieldDelegate, UITextVie
   @IBOutlet weak var termLabel: UITextField!
   @IBOutlet weak var mnemonicLabel: UITextField!
   @IBOutlet weak var definitionTextView: UITextView!
+  @IBOutlet weak var exampleTextView: UITextView!
 
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     configureView()
@@ -33,10 +33,8 @@ class WordDetailViewController: UIViewController, UITextFieldDelegate, UITextVie
     definitionTextView.delegate = self
     definitionTextView.tag = 3
 
-    termLabel.text = word.term
-    definitionTextView.text = word.definition
-    mnemonicLabel.text = word.mnemonic
-
+    exampleTextView.delegate = self
+    exampleTextView.tag = 4
   }
 
 
@@ -65,8 +63,11 @@ class WordDetailViewController: UIViewController, UITextFieldDelegate, UITextVie
 
     definitionTextView.textContainerInset = UIEdgeInsets.zero  
     definitionTextView.textContainer.lineFragmentPadding = 0
-    definitionTextView.attributedText = NSMutableAttributedString(string: word.definition ?? "no definition yet", attributes: bodyAttributes)
+    definitionTextView.attributedText = NSMutableAttributedString(string: "no definition yet (you can modify this)", attributes: bodyAttributes)
 
+    exampleTextView.textContainerInset = UIEdgeInsets.zero
+    exampleTextView.textContainer.lineFragmentPadding = 0
+    exampleTextView.attributedText = NSMutableAttributedString(string: "no example yet (you can modify this)", attributes: bodyAttributes)
   }
 
   func editWord() {

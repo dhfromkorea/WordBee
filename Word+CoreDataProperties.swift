@@ -2,7 +2,7 @@
 //  Word+CoreDataProperties.swift
 //  WordBee
 //
-//  Created by dh on 12/21/16.
+//  Created by dh on 12/22/16.
 //  Copyright © 2016 dh. All rights reserved.
 //
 
@@ -16,10 +16,10 @@ extension Word {
     return NSFetchRequest<Word>(entityName: "Word");
   }
 
-  @NSManaged public var term: String
-  @NSManaged public var mnemonic: String
   @NSManaged public var createdAt: Date
+  @NSManaged public var mnemonic: String
+  @NSManaged public var term: String
   @NSManaged public var definition: String?
-  @NSManaged public var examples: NSObject?
+  @NSManaged public var example: String?
 
 }
