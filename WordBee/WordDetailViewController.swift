@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import CoreData
 
 class WordDetailViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
   var word: Word!
-  lazy var saveContext = (UIApplication.shared.delegate as! AppDelegate).saveContext
-  lazy var viewContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+  weak var appDelegate: AppDelegate!
+  var viewContext: NSManagedObjectContext!
 
   @IBOutlet var headingLabels: [UILabel]!
   @IBOutlet weak var termLabel: UITextField!
@@ -35,11 +36,10 @@ class WordDetailViewController: UIViewController, UITextFieldDelegate, UITextVie
     termLabel.text = word.term
     definitionTextView.text = word.definition
     mnemonicLabel.text = word.mnemonic
-  }
 
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+
+    appDelegate = UIApplication.shared.delegate as! AppDelegate
+    viewContext = appDelegate.managedObjectContext
   }
 
 
@@ -101,7 +101,7 @@ class WordDetailViewController: UIViewController, UITextFieldDelegate, UITextVie
       default:
         print("textfield ")
       }
-      saveContext()
+      appDelegate.saveContext()
     }
 
   }
@@ -118,7 +118,7 @@ class WordDetailViewController: UIViewController, UITextFieldDelegate, UITextVie
       default:
         print("textfield ")
       }
-      saveContext()
+      appDelegate.saveContext()
     }
   }
 
