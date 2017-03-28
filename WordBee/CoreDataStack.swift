@@ -43,6 +43,7 @@ class CoreDataStack: NSObject {
         fatalError("Unresolved error \(error)")
       }
     })
+    
     return container
   }()
 

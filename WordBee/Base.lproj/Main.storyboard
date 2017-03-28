@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="81"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jnj-TF-LEc" id="ssa-Yf-fZf">
-                                    <frame key="frameInset" width="375" height="80"/>
+                                    <frame key="frameInset" width="375" height="81"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="word" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oad-qb-8aH">
@@ -154,11 +154,20 @@
                                             <constraint firstItem="uNx-Up-I5K" firstAttribute="leading" secondItem="Omm-FB-bAb" secondAttribute="leading" id="ZZN-bg-HUZ" userLabel="Example Text View.leading = Example.leading"/>
                                         </constraints>
                                     </stackView>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QiV-t9-UCW">
+                                        <state key="normal" title="DELETE">
+                                            <color key="titleColor" red="1" green="0.22896783640536711" blue="0.26479986294190772" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="deleteWord:" destination="G6E-Oj-n9e" eventType="touchUpInside" id="nCM-18-ckF"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="TfN-QU-srg" firstAttribute="top" secondItem="elA-DV-d1a" secondAttribute="bottom" constant="16" id="APs-5o-Egg"/>
                                     <constraint firstItem="3HX-QL-zhi" firstAttribute="leading" secondItem="TfN-QU-srg" secondAttribute="leading" id="I2V-Ik-1Pv"/>
                                     <constraint firstItem="TfN-QU-srg" firstAttribute="leading" secondItem="elA-DV-d1a" secondAttribute="leading" id="R6V-pO-hdx"/>
+                                    <constraint firstItem="QiV-t9-UCW" firstAttribute="centerX" secondItem="4Xq-Fg-sRp" secondAttribute="centerX" id="foy-8m-0Ld"/>
+                                    <constraint firstItem="QiV-t9-UCW" firstAttribute="top" secondItem="3HX-QL-zhi" secondAttribute="bottom" constant="8" id="rok-wF-30q"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -171,6 +180,7 @@
                     </view>
                     <connections>
                         <outlet property="definitionTextView" destination="K8P-yf-BOQ" id="fvS-z8-1pO"/>
+                        <outlet property="deleteButton" destination="QiV-t9-UCW" id="aka-WT-c0H"/>
                         <outlet property="exampleTextView" destination="uNx-Up-I5K" id="K3D-cP-bOm"/>
                         <outlet property="mnemonicLabel" destination="Dsn-tE-hEb" id="lWH-M9-pzh"/>
                         <outlet property="termLabel" destination="3t6-es-a2y" id="49o-ia-LFn"/>

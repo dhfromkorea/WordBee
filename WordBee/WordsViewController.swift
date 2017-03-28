@@ -21,6 +21,10 @@ class WordsViewController: UITableViewController {
     wordDatasource.words = store.fetchWords()
   }
 
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    tableView.reloadData()
+  }
 
   // MARK: configure views
   func configureView() {
